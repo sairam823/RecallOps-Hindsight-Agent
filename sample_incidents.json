@@ -1,0 +1,42 @@
+[
+  {
+    "incident_id": "INC-021",
+    "service": "payments-api",
+    "severity": "P1",
+    "symptoms": "HTTP 503 responses, CPU 96%, high latency, saturated upstream connection pool",
+    "recent_change": "Traffic increased after a campaign launch",
+    "root_cause": "Backend capacity was insufficient for the traffic spike",
+    "attempted_actions": [
+      "Restarted API gateway",
+      "Checked database connectivity"
+    ],
+    "successful_fix": "Scaled payments-api replicas from 2 to 5",
+    "outcome": "503 rate returned to normal and latency dropped"
+  },
+  {
+    "incident_id": "INC-014",
+    "service": "payments-api",
+    "severity": "P1",
+    "symptoms": "Intermittent 503 responses and database connection timeouts",
+    "recent_change": "Connection pool configuration was unchanged for several months",
+    "root_cause": "Database connection pool exhaustion",
+    "attempted_actions": [
+      "Restarted one application pod"
+    ],
+    "successful_fix": "Adjusted connection pool limits after confirming database capacity",
+    "outcome": "Timeouts stopped"
+  },
+  {
+    "incident_id": "INC-008",
+    "service": "api-gateway",
+    "severity": "P1",
+    "symptoms": "Requests returned 503 after deployment",
+    "recent_change": "Gateway configuration deployment",
+    "root_cause": "Invalid gateway configuration",
+    "attempted_actions": [
+      "Restarted gateway"
+    ],
+    "successful_fix": "Rolled back the gateway configuration",
+    "outcome": "Requests returned to normal"
+  }
+]
